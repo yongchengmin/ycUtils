@@ -48,7 +48,7 @@ public class requestUtil {
 						result = EntityUtils.toString(entity, ENCODING);
 					}
 				}
-				System.out.println(response.getStatusLine());
+//				System.out.println(response.getStatusLine());
 				// do something useful with the response body
 				// and ensure it is fully consumed
 
@@ -83,7 +83,7 @@ public class requestUtil {
 						result = EntityUtils.toString(entity, ENCODING);
 					}
 				}
-				System.out.println(response.getStatusLine());
+//				System.out.println(response.getStatusLine());
 				// do something useful with the response body
 				// and ensure it is fully consumed
 

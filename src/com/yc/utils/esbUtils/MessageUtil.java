@@ -31,9 +31,9 @@ public class MessageUtil {
 		}
 		
 		String sign=contentBuffer.substring(0, contentBuffer.length()-1)+secretKey;
-		System.out.println("odd.sign="+sign);
+//		System.out.println("odd.sign="+sign);
 		sign =CertUtil.Md5(sign,DEFAULT_CODE);
-		System.out.println("Md5.sign="+sign);
+//		System.out.println("Md5.sign="+sign);
 
 		return sign;
 	}
@@ -44,10 +44,10 @@ public class MessageUtil {
 		boolean result = false;
 		String sign="";
 		String originSign = (String) map.get("sign");
-		System.out.println("originSign="+originSign);
+//		System.out.println("originSign="+originSign);
 		map.remove("sign");
 		sign = sign(map,secretKey);
-		System.out.println("sign="+sign);
+//		System.out.println("sign="+sign);
 		if(sign.equals(originSign))result = true;
 		return result;
 	}
