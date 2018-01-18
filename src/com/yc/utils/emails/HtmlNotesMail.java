@@ -17,6 +17,10 @@ public class HtmlNotesMail {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		test002();
+	}
+	@SuppressWarnings("unused")
+	private static void test001(){
 		// TODO Auto-generated method stub
 		String address = "yongcheng_min@163.com,309831731@qq.com";//sunxiaojing0628@126.com
 		String subject = "节点消息";
@@ -48,6 +52,29 @@ public class HtmlNotesMail {
 			e.printStackTrace();
 		}
 	}
+	private static void test002(){
+		// TODO Auto-generated method stub
+		String address = "yongcheng_min@163.com,309831731@qq.com";//sunxiaojing0628@126.com
+		String subject = "蔚来汽车节点消息";
+		// set the html message
+		String head = "节点消息(20171212)";
+		String[] cloumns = new String[]{
+			"VIN","状态"
+		};
+		int size = cloumns.length;
+		List<String[]> values = new ArrayList<String[]>(size);
+		values.add(new String[]{
+			"ES8000024H7700030","入库"	
+		});
+		try {
+			from = "wechar.email@jqwl.com";
+			HtmlNotesMail.sendHtmlNotes(subject, host, from,address,head,cloumns,values,size);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (EmailException e) {
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * 
 	 * @param subject:主题
@@ -61,7 +88,7 @@ public class HtmlNotesMail {
 	 * @throws EmailException
 	 * @throws MalformedURLException
 	 */
-	private static String sendHtmlNotes(String subject,String host,String from,String address//邮件主题
+	public static String sendHtmlNotes(String subject,String host,String from,String address//邮件主题
 			,String head,String[] cloumns,List<String[]> values,int size) //邮件内容
 					throws EmailException, MalformedURLException{
 		String emails[] = address.split(",");
@@ -78,7 +105,7 @@ public class HtmlNotesMail {
 				email.setAuthentication(userName, password);
 				email.setSubject(subject);
 				// set the html message
-				email.setHtmlMsg(getHtmlNotesMsg(head, cloumns, values,3));
+				email.setHtmlMsg(getHtmlNotesMsg(head, cloumns, values,size));
 				// set the alternative message
 				email.setTextMsg("Your email client does not support HTML messages");
 				// send the email
