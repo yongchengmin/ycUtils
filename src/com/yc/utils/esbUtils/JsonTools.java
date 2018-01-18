@@ -19,6 +19,7 @@ public class JsonTools{
 		return jsonObject.toString();
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public static String getCreateJson(Map map){
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.putAll(map);
@@ -45,6 +46,20 @@ public class JsonTools{
         }
 		return true;
     
+	}
+	//{"errcode":0,"errmsg":"ok","msgid":108925056251363330}
+	/**
+	 * jsondata:是否有错误的返回json
+	 * errcode:成功码
+	 * errorValue:成功值
+	 * */
+	public static Boolean isError(String jsondata,String errcode,String errorValue){
+		JSONObject jsonObject = JSONObject.fromObject(jsondata);  
+    	String code = jsonObject.getString(errcode);
+        if(!code.equals(errorValue)){
+        	return true;
+        }
+        return false;
 	}
 	public static List<Map<String, Object>> getListMap(){
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();

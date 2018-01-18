@@ -62,15 +62,18 @@ public class JsonHelper {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static Map parseToMap(String json) {
 		return parseToObject(json, Map.class);
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static Map parseToMapStrStr(String json) {
 		return parseToObject(json, new TypeReference<Map<String, String>>() {
 		});
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static Map parseToMap(byte[] b) {
 		if (b == null || b.length == 0) {
 			return null;
@@ -78,6 +81,7 @@ public class JsonHelper {
 		return parseToObject(b, 0, b.length, Map.class);
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static Map parseToMap(InputStream is) {
 		return parseToObject(is, Map.class);
 	}
