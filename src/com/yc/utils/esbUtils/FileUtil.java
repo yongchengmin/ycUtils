@@ -75,7 +75,9 @@ public class FileUtil {
 	public static void main(String []args)
 	{
 		try {
-			fileToList();
+			List<Long> list = new ArrayList<Long>();
+			list.add(1L);list.add(2L);list.add(1L);list.add(2L);
+			listToFile(list);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
