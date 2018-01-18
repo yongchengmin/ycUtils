@@ -43,20 +43,20 @@ public class FileUtil {
 	public static List<String> fileToList(String pathname) throws IOException
 	{
 		List<String> list = new ArrayList<String>();
-		 String lineinfo="";
-		 File f=new File(pathname);
-		 BufferedReader br=new BufferedReader(new FileReader(f));
-		 while((lineinfo = br.readLine()) != null)
-		 {
-			 list.add(lineinfo.trim());
-		 }
-	     br.close();
+		String lineinfo="";
+		File f=mkdir(pathname);
+		BufferedReader br=new BufferedReader(new FileReader(f));
+		while((lineinfo = br.readLine()) != null)
+		{
+			list.add(lineinfo.trim());
+		}
+	    br.close();
 		return list;
 	}
 	//"d:/openid_nickname.txt"
 	public static void listToFile(List<String> list,String pathname) throws IOException
 	{
-		 File f=new File(pathname);
+		 File f=mkdir(pathname);
 		 BufferedWriter bw=new BufferedWriter(new FileWriter(f));
 	     for(int i=0;i<list.size();i++){
 	         bw.append(list.get(i));
@@ -64,7 +64,14 @@ public class FileUtil {
 	     }
 	     bw.close();
 	}
-	
+	public static File mkdir(String path){
+    	File file =new File(path);    
+    	//如果文件夹不存在则创建    
+    	if  (!file .exists()  || !file .isDirectory()){       
+    	    file .mkdir();    
+    	}
+    	return file;
+    }
 	public static void main(String []args)
 	{
 		try {
