@@ -44,7 +44,7 @@ public class FileUtil {
 	{
 		List<String> list = new ArrayList<String>();
 		String lineinfo="";
-		File f=mkdir(pathname);
+		File f=new File(pathname);
 		BufferedReader br=new BufferedReader(new FileReader(f));
 		while((lineinfo = br.readLine()) != null)
 		{
@@ -56,7 +56,7 @@ public class FileUtil {
 	//"d:/openid_nickname.txt"
 	public static void listToFile(List<String> list,String pathname) throws IOException
 	{
-		 File f=mkdir(pathname);
+		 File f=new File(pathname);
 		 BufferedWriter bw=new BufferedWriter(new FileWriter(f));
 	     for(int i=0;i<list.size();i++){
 	         bw.append(list.get(i));

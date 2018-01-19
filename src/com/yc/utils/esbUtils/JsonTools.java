@@ -54,12 +54,23 @@ public class JsonTools{
 	 * errorValue:成功值
 	 * */
 	public static Boolean isError(String jsondata,String errcode,String errorValue){
+		if(jsondata==null){
+			 return true;
+		}
 		JSONObject jsonObject = JSONObject.fromObject(jsondata);  
     	String code = jsonObject.getString(errcode);
         if(!code.equals(errorValue)){
         	return true;
         }
         return false;
+	}
+	public static String getJsonKey(String jsondata,String errcode){
+		if(jsondata==null){
+			 return null;
+		}
+		JSONObject jsonObject = JSONObject.fromObject(jsondata);  
+    	String code = jsonObject.getString(errcode);
+        return code;
 	}
 	public static List<Map<String, Object>> getListMap(){
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
