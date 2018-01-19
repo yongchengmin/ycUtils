@@ -25,7 +25,19 @@ public class DateUtil {
 		  return Math.abs((date2.getTime() - date1.getTime()));// 寰楀埌涓よ�鐨勬绉掓暟
 	}
 	
-
+	/**
+	 * 系统时间增加秒
+	 * @param amount:增加的秒数
+	 * @return
+	 */
+	public static Long addSecond(int amount){
+		long time = System.currentTimeMillis();
+		Date d = new Date(time);
+		Calendar c = Calendar.getInstance();
+		c.setTime(d);
+		c.add(Calendar.SECOND, amount);
+		return c.getTimeInMillis();
+	}
 
 	public static void main(String[] args) throws ParseException {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
