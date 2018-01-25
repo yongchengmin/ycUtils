@@ -1,5 +1,6 @@
 package com.yc.utils.esbUtils;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -37,6 +38,10 @@ public class DateUtil {
 		c.setTime(d);
 		c.add(Calendar.SECOND, amount);
 		return c.getTimeInMillis();
+	}
+	public static String format(Date date,String format) {
+		DateFormat df = new SimpleDateFormat(format);
+		return df.format(date);
 	}
 
 	public static void main(String[] args) throws ParseException {

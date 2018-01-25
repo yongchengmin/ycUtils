@@ -32,7 +32,16 @@ public abstract class StringUtils {
 		}
 		return true;
 	}
-
+	public static String substringBeforeLast(String str, String separator){
+		if ((isEmpty(str)) || (isEmpty(separator))) {
+	      return str;
+	    }
+	    int pos = str.lastIndexOf(separator);
+	    if (pos == -1) {
+	      return str;
+	    }
+	    return str.substring(0, pos);
+	}
 	/**
 	 * 对象是否为数字型字符�?
 	 */
@@ -96,4 +105,12 @@ public abstract class StringUtils {
 		return out.toString();
 	}
 
+	//参数 num:字符串长度  str:需要显示的字符
+	public static String getStr(int num, String str){
+		StringBuffer sb = new StringBuffer("");
+		for(int i=0;i<num;i++){
+		   sb.append(str);
+		}
+		return sb.toString();
+	}
 }

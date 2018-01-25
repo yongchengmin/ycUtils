@@ -6,13 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
-
-import com.yc.utils.esbUtils.FileUtil;
 
 public class PropertiesUtil {
     private static Properties properties= new Properties();
@@ -62,9 +57,43 @@ public class PropertiesUtil {
           e.printStackTrace();
       }
     }
+    /**
+     * 
+     * @param pathname:文件绝对路径
+     * @param keyName:要获取key
+     * @return
+     */
+	@SuppressWarnings("unused")
+	public static String getPropertiesKey(String pathname,String keyName){
+		String value = "";
+		File file = new File(pathname);
+		if(file==null){
+			return null;
+		}
+		try {
+		 	FileInputStream in = null;
+		 	Properties pp = new Properties();
+	        try{
+	            in = new FileInputStream(file);
+	            pp.load(in);
+	            value = pp.getProperty(keyName);
+	        } catch (FileNotFoundException e){
+	            e.printStackTrace();
+	        }finally{
+	        	pp = null;
+	        	in = null;
+	        }
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return value;
+	}
     public static void main(String[] args) {
+    	System.out.println(getPropertiesKey("D:\\wechar-openid\\esb-sap.properties", "url_esb"));
+    	System.out.println(getPropertiesKey("D:\\wechar-openid\\esb-sap.properties", "application"));
+    	System.out.println(getPropertiesKey("D:\\wechar-openid\\esb-sap.properties", "secret_key"));
 //    	InputStream ips = PropertiesUtil.class.getResourceAsStream(PROPERTIES_ACCESS_TOKEN);
-    	FileUtil.mkdir("d:/wechar-openid/");
+    	/*FileUtil.mkdir("d:/wechar-openid/");
     	File f= new File("d:/wechar-openid/"+PROPERTIES_ACCESS_TOKEN);
     	if(!f.exists()){
     		List<String> list = new ArrayList<String>();
@@ -98,6 +127,6 @@ public class PropertiesUtil {
     	saveKey(PROPERTIES_ACCESS_TOKEN, EXPIRATION_TIME, "77666",fileUrl,ips);
     	accessToken = getStringAccessTokenKey(ips);
     	expirationTime = getLongAccessTokenKey(ips);
-    	System.out.println("修改后:"+accessToken+"=="+expirationTime);
+    	System.out.println("修改后:"+accessToken+"=="+expirationTime);*/
     }
 }
