@@ -8,6 +8,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.UnknownHostException;
 
 import net.sf.json.JSONObject;
 
@@ -87,7 +88,10 @@ public class UrlReqUtil {
             reader = null;
 //            System.out.println(sb.toString());
             return sb.toString();
-        } catch (Exception e) {
+        }catch(UnknownHostException e){
+        	e.printStackTrace();
+        	return null;
+        }catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
             return null;

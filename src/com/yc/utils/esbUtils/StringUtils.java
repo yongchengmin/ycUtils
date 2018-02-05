@@ -5,7 +5,18 @@ package com.yc.utils.esbUtils;
  * 
  */
 public abstract class StringUtils {
-
+	/**####*/
+	public static String spilt4 = "####";
+	/**#*/
+	public static String spilt1 = "#";
+	/**.*/
+	public static String spiltDot = ".";
+	public static String spiltComma = ",";
+	/**¦*/
+	public static String breakChar = "¦";
+	/**\r\n 换行*/
+	public static String enter = "\r\n";
+	
 	private StringUtils() {}
 
 	/**
