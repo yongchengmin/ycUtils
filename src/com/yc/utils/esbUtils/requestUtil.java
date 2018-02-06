@@ -1,8 +1,16 @@
 package com.yc.utils.esbUtils;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.ConnectException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
@@ -18,7 +26,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 import com.google.gson.Gson;
-
 public class requestUtil {
 
 	public static final String ENCODING = "UTF-8";
@@ -135,4 +142,48 @@ public class requestUtil {
 		return result;
 	}
 
+	
+	public static String getResponseData(String url, String postData)throws Exception{
+		String data = null;
+		DataOutputStream wr = null;
+		DataInputStream rd = null;
+		HttpsURLConnection httpurlconnection = null;
+		try {
+			URL dataUrl = new URL(url);
+			httpurlconnection = (HttpsURLConnection) dataUrl.openConnection();
+			httpurlconnection.setSSLSocketFactory(new TLSSocketConnectionFactory());
+			httpurlconnection.setConnectTimeout(100000);
+			httpurlconnection.setRequestMethod("POST");
+			httpurlconnection.setRequestProperty("Proxy-Connection", "Keep-Alive");
+			httpurlconnection.setDoOutput(true);
+			httpurlconnection.setDoInput(true);
+			OutputStream os = httpurlconnection.getOutputStream();
+			wr = new DataOutputStream(os);
+			wr.write(postData.getBytes());
+			wr.flush();
+			wr.close();
+			InputStream is = httpurlconnection.getInputStream();
+			rd = new DataInputStream(is);
+			byte d[] = new byte[rd.available()];
+			rd.read(d);
+			data = new String(d);
+			httpurlconnection.disconnect();
+		}  catch(ConnectException e) {
+        	return "{\"code\":404,\"message\":\"Read timed out！\"}";
+        } finally {
+            if (rd != null) {
+                rd.close();
+                rd = null;
+            }
+            if (wr != null) {
+                wr.close();
+                wr = null;
+            }
+            if (httpurlconnection != null) {
+            	httpurlconnection.disconnect();
+            	httpurlconnection = null;
+            }
+        }
+		return data;
+	}
 }
