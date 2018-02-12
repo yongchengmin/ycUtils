@@ -57,6 +57,20 @@ public class PropertiesUtil {
           e.printStackTrace();
       }
     }
+    public static void saveKey(File f,String key,String value,InputStream ips){
+    	if(properties.isEmpty()){
+    		initAccessTokenProperties(ips);
+    	}
+    	properties.setProperty(key, value);
+      //保存文件
+      try {
+          FileOutputStream fos = new FileOutputStream(f,false);
+          properties.store(fos,"");
+          fos.close();
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
+    }
     /**
      * 
      * @param pathname:文件绝对路径
