@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class FileUtil {
+	public static String encodeing = "UTF-8";
 	public static String enter = "\r\n";
 	public static void listToFile(List<Long> list) throws IOException
 	{

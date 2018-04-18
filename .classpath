@@ -19,5 +19,9 @@
 	<classpathentry kind="var" path="MAVEN_REPO/commons-email/jars/commons-email-1.2.jar"/>
 	<classpathentry kind="var" path="MAVEN_REPO/commons-email/jars/mail.jar"/>
 	<classpathentry kind="var" path="MAVEN_REPO/bouncycastle/jars/bcprov-jdk15on-1.49.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/jac_esb/jars/commons-lang-2.6.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/jac_esb/jars/commons-logging-1.2.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/commons-collections/jars/commons-collections-3.1.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/commons-beanutils/jars/commons-beanutils-1.7.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
